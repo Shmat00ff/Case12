@@ -49,7 +49,22 @@ class Nomer():
          myfile1.close()
 
      def sravnenie(self):
-         '''Тут он должен подбирать номер'''
+         '''Тут он должен подбирать номер '''
+         myfile = open('booking.txt', mode='r', encoding='utf-8')
+
+
+         for line in myfile:
+             k = 0
+             nom = ""
+             myfile1 = open('fund1.txt', mode='r', encoding='utf-8')
+             for line1 in myfile1:
+                 if line.split()[4] <= line1.split()[2]:
+                     if float(line.split()[-1]) >= float(line1.split()[-1]) and float(line1.split()[-1]) >= k:
+                         k = float(line1.split()[-1])
+                         nom = line1.split()[0] + " " + line1.split()[4]
+
+             print(line, k, nom)
+
 
 
 def comfort(x,s):
