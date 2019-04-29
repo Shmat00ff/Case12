@@ -1,4 +1,56 @@
 """" Developers: Anya Bayanova, Shmatov Denis """
+import re
+class Nomer():
+
+     def __init__(self):
+         pass
+
+     def budget(self):
+         '''Узнаем бюджет клиента'''
+         outputfile = "booking.txt"
+         myfile1 = open(outputfile, mode='r', encoding='utf-8')
+         for line in myfile1:
+             parser_result = line[::-1]
+             a = parser_result.find(' ')
+             parser_result = parser_result[:a]
+             print(parser_result[::-1])
+         myfile1.close()
+
+     def price(self):
+         '''Узнаем цену номера'''
+         outputfile = "fund1.txt"
+         myfile1 = open(outputfile, mode='r', encoding='utf-8')
+         for line in myfile1:
+             parser_result = line[::-1]
+             a = parser_result.find(' ')
+             parser_result = parser_result[:a]
+             print(parser_result[::-1])
+         myfile1.close()
+
+     def spl(self):
+         '''Узнаем сколько клиентов'''
+         outputfile = "fund1.txt"
+         myfile1 = open(outputfile, mode='r', encoding='utf-8')
+         for line in myfile1:
+            result = re.split(r' ', line)
+            print(result[2])
+         myfile1.close()
+
+     def nomspl(self):
+         '''Узнаем сколько мест в номере'''
+         outputfile = "booking.txt"
+         myfile1 = open(outputfile, mode='r', encoding='utf-8')
+         for line in myfile1:
+             try:
+                result = re.split(r' ', line)
+                print(result[4])
+             except IndexError:
+                 pass
+         myfile1.close()
+
+     def sravnenie(self):
+         '''Тут он должен подбирать номер'''
+
 
 def comfort(x,s):
     if x == "standard":
@@ -37,5 +89,12 @@ with open("fund.txt") as n:
                     s += 4100
                     s = comfort(line.split()[3], s)
 
-                out.write("{} {} {} {} {} {} \n".format(line.split()[0], line.split()[1], line.split()[2],
+                out.write("{} {} {} {} {} {}\n".format(line.split()[0], line.split()[1], line.split()[2],
                                                         line.split()[3], k, str(s)))
+
+def main():
+    nom1 = Nomer()
+    nom1.sravnenie()
+
+if __name__=='__main__':
+    main()
