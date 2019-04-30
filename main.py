@@ -88,7 +88,7 @@ class Nomer():
                  if nom != "":
                      print("Найдено:")
                      print()
-                     print("номер " + str(nom) + " рассчитан на "+ str(spa) + " чел. фактически " + str(ppls) + " чел. стоимость "+ str(k) )
+                     print("Номер " + str(nom) + " рассчитан на "+ str(spa) + " чел. фактически " + str(ppls) + " чел. стоимость "+ str(k) )
                      print()
                      if randint(0,3) == 0:
                          print("Клиент отакзался от номера")
