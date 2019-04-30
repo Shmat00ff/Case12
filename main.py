@@ -1,5 +1,4 @@
 """" Developers: Anya Bayanova, Shmatov Denis """
-import re
 class Nomer():
 
      def __init__(self):
@@ -10,19 +9,27 @@ class Nomer():
          '''Тут он должен подбирать номер '''
          resereved = {}
          for i in range(0,25):
-             resereved.update({i:"free"})
+             resereved.update({i:"free !"})
 
-         nom = 0
+         nom = ""
          myfile = open('booking.txt', mode='r', encoding='utf-8')
          for line in myfile:
-             if resereved.get(nom) == "free":
-                 resereved.update({nom: "занято"})
+             dat = int(line.split()[-3].split('.')[0]) + int(line.split()[-2])
+             dt = int(line.split()[0].split('.')[0])
+             for i in range(1,25):
+                if resereved.get(i).split()[1] == str(dt):
+                    resereved.update({i:"free !"})
+             if resereved.get(nom) == "free !":
+                 resereved.update({nom: "занято {}".format(dat)})
+
+
              k = 0
              nom = ""
-             myfile1 = open('fund1.txt',"r", encoding='utf-8')
+             eat = ""
+             myfile1 = open('fund1.txt', "r", encoding='utf-8')
              price = 0
              for line1 in myfile1:
-                 if resereved.get(int(line1.split()[0])) == "free":
+                 if resereved.get(int(line1.split()[0])) == "free !":
                     if line.split()[4] < line1.split()[2]:
                         price = float(line1.split()[-1]) * 0.7
                         if float(line.split()[-1]) >= price and price >= k:
@@ -37,14 +44,20 @@ class Nomer():
                             k = price
                             nom = int(line1.split()[0])
                             eat = line1.split()[-2]
-                 if resereved.get(nom) == "занято":
+                 if resereved.get(nom) != "free !":
                      nom = ""
                      k = 0
+                     eat = ""
 
-             print(resereved.get(nom),line, nom, k, eat)
+# первую дату сравнить с датой отъезда
+
+             print(line, nom, k, eat)
          print(resereved)
 
-
+     def data(self):
+         myfile = open('booking.txt', mode='r', encoding='utf-8')
+         for line in myfile:
+             dat = int(line.split()[-3].split('.')[0]) + int(line.split()[-2])
 
 
 
@@ -107,6 +120,7 @@ def main():
     nom1 = Nomer()
     nom1.sort()
     nom1.sravnenie()
+    nom1.data()
 
 
 if __name__=='__main__':
