@@ -1,4 +1,6 @@
 """" Developers: Anya Bayanova 50%, Shmatov Denis 90% """
+from random import randint
+
 class Nomer():
 
      def __init__(self):
@@ -88,6 +90,11 @@ class Nomer():
                      print()
                      print("номер " + str(nom) + " рассчитан на "+ str(spa) + " чел. фактически " + str(ppls) + " чел. стоимость "+ str(k) )
                      print()
+                     if randint(0,3) == 0:
+                         print("Клиент отакзался от номера")
+                         resereved.update({nom:"free !"})
+                     else:
+                         print("Клиент согласен! Номер забронирован!")
                      print("------------------------------------------------------------------------------------")
 
                  else:
